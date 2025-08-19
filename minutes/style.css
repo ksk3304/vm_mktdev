@@ -49,10 +49,18 @@ header h1 {
     text-decoration: none;
     color: #3498db;
     transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .minute-list a:hover {
     background-color: #ecf0f1;
+}
+
+.upload-date {
+    color: #7f8c8d;
+    font-size: 14px;
 }
 
 .log-content-wrapper {
