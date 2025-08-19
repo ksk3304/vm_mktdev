@@ -32,7 +32,7 @@ EOF
 for log_file in $(find "$LOG_DIR" -name "*.txt" -type f | sort -r); do
     filename=$(basename "$log_file")
     html_file="$MINUTE_DIR/${filename%.txt}.html"
-    upload_date=$(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$log_file")
+    upload_date=$(date -r $(stat -f %m "$log_file") "+%Y-%m-%d %H:%M:%S")
 
     # --- で区切られたMarkdown部分を抽出
     markdown_content=$(awk '/---/ {p=1; next} p' "$log_file")
