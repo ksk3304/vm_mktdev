@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm install && ./create-minute.sh",
+  "outputDirectory": "minutes",
+  "installCommand": "npm install"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "claude-code-communication-minutes",
+  "version": "1.0.0",
+  "description": "Log viewer for virtual minutes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "showdown": "^2.1.0"
+  }
+}

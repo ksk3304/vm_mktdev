@@ -12,7 +12,11 @@
       "Bash(then)",
       "Bash(else)",
       "Bash(grep:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(for i in {0..3})",
+      "Bash(do tmux send-keys -t multiagent.$i 'claude --dangerously-skip-permissions' C-m)",
+      "Bash(done)",
+      "Bash(open:*)"
     ],
     "deny": []
   }

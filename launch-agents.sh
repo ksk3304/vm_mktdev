@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 🚀 AIエージェント一括起動スクリプト
+# 🚀 トンネル点検AIエージェント一括起動スクリプト
 # claude --dangerously-skip-permissions フラグ付きで全エージェントを起動
 
 set -e  # エラー時に停止
@@ -18,8 +18,8 @@ log_warning() {
     echo -e "\033[1;33m[WARNING]\033[0m $1"
 }
 
-echo "🤖 AIエージェント一括起動"
-echo "=========================="
+echo "🏗️ トンネル点検AIエージェント一括起動"
+echo "======================================="
 echo ""
 
 # セッション存在確認
@@ -27,7 +27,7 @@ check_sessions() {
     local all_exist=true
     
     if ! tmux has-session -t president 2>/dev/null; then
-        log_warning "presidentセッションが存在しません"
+        log_warning "社長セッションが存在しません"
         all_exist=false
     fi
     
@@ -60,9 +60,11 @@ main() {
     check_sessions
     
     echo "📋 起動するエージェント:"
-    echo "  - PRESIDENT (統括責任者)"
-    echo "  - boss1 (チームリーダー)"
-    echo "  - worker1, 2, 3 (実行担当者)"
+    echo "  - 社長 (経営統括責任者)"
+    echo "  - 営業 (営業担当)"
+    echo "  - 技術 (技術担当)"
+    echo "  - 経理 (経理担当)"
+    echo "  - 人事 (人事担当)"
     echo ""
     
     # 起動確認
@@ -76,28 +78,26 @@ main() {
     log_info "起動を開始します..."
     echo ""
     
-    # PRESIDENT起動
-    launch_agent "president" "PRESIDENT"
+    # 社長起動
+    launch_agent "president" "社長"
     
-    # boss1起動
-    launch_agent "multiagent:0.0" "boss1"
-    
-    # workers起動
-    launch_agent "multiagent:0.1" "worker1"
-    launch_agent "multiagent:0.2" "worker2"
-    launch_agent "multiagent:0.3" "worker3"
+    # 各部門起動
+    launch_agent "multiagent:0.0" "営業"
+    launch_agent "multiagent:0.1" "技術"
+    launch_agent "multiagent:0.2" "経理"
+    launch_agent "multiagent:0.3" "人事"
     
     echo ""
     log_success "✅ 全エージェントの起動コマンドを送信しました"
     echo ""
     echo "📋 次のステップ:"
     echo "  1. 各画面でブラウザ認証を完了してください"
-    echo "  2. PRESIDENTに指示を送信:"
-    echo "     「あなたはpresidentです。[プロジェクト内容]」"
+    echo "  2. 社長に指示を送信:"
+    echo "     「あなたは社長です。〇〇トンネルの定期点検を計画してください」"
     echo ""
     echo "💡 画面を確認:"
     echo "  tmux attach-session -t president    # 社長画面"
-    echo "  tmux attach-session -t multiagent   # 部下たち画面"
+    echo "  tmux attach-session -t multiagent   # 各部門画面"
 }
 
 # 実行
